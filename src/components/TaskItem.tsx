@@ -8,11 +8,11 @@ interface TaskItemProps {
   TaskCompletion: (id: number) => void;
 }
 
+// Displays a single task with checkbox and delete button
 const TaskItem: React.FC<TaskItemProps> = ({ task, deleteTask, TaskCompletion }) => {
   return (
     <li className={`flex justify-between items-center bg-gray-50 p-3 rounded-lg shadow-sm ${task.category === 'work' && 'bg-red-100'}`}>
       <div className="flex items-center gap-2">
-      // Displays a single task with checkbox and delete button
         <input
           type="checkbox"
           checked={task.completed}
@@ -21,7 +21,6 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, deleteTask, TaskCompletion })
         />
         <span className={task.completed ? 'line-through text-gray-400' : ''}>{task.text}</span>
       </div>
-      // Toggles task completion
       <button
         onClick={() => deleteTask(task.id)}
         className="bg-red-500 text-white p-1.5 rounded-lg hover:bg-red-600"

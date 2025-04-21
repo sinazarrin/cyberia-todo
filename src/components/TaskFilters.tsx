@@ -5,11 +5,9 @@ interface TaskFiltersProps {
   selectedCategory: string
 }
 
+// Dropdown to filter tasks by category (all, personal, work)
 const TaskFilters: React.FC<TaskFiltersProps> = ({ setSelectedCategory, selectedCategory }) => {
-
-
   return (
-    // Dropdown to filter tasks by category (all, personal, work)
     <div className="flex justify-center gap-4 my-4 mt-8">
       <select value={selectedCategory} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSelectedCategory(e.target.value as 'all' | 'personal' | 'work')} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 h-12">
         <option value="all">all</option>

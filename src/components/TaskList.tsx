@@ -8,9 +8,9 @@ interface TaskListProps {
   TaskCompletion: (id: number) => void;
 }
 
+// Renders a list of TaskItem components from provided tasks
 const TaskList: React.FC<TaskListProps> = ({ tasks, deleteTask, TaskCompletion }) => {
   return (
-    // Renders a list of TaskItem components from provided tasks
     <ul className="space-y-2">
       {tasks.map((task) => (
         <TaskItem
