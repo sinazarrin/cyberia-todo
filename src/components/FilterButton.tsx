@@ -8,6 +8,7 @@ interface IProps {
 const FilterButton = ({ setFilter, filter }: IProps) => {
 
     return (
+        // Buttons to switch between task filters: all, active, completed
         <div className="flex lg:flex-col flex-row justify-around lg:gap-6 gap-2 bg-white shadow-md rounded-lg p-3 h-full">
             {filterButtons.map((item) => (
                 <div

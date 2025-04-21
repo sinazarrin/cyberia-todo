@@ -6,22 +6,26 @@ import { Task } from '../types';
 import FilterButton from './FilterButton';
 import { getLocalTasks, setLocalTasks } from '../lib/storage';
 
+// Main task management component that handles state, filtering, and logic
 const TaskManager: React.FC = () => {
     const [tasks, setTasks] = useState<Task[]>([]);
     const [filter, setFilter] = useState<'all' | 'active' | 'completed'>('all');
     const [selectedCategory, setSelectedCategory] = useState<'all' | 'personal' | 'work'>('all');
 
     useEffect(() => {
+        // Load tasks from localStorage on component mount 
         const task: Task[] = getLocalTasks()
         if (task) setTasks(task)
-    }, [])
-
+        }, [])
+    
     const syncTasks = useCallback((updatedTasks: Task[]) => {
+        // Update both state and localStorage when tasks change
         setTasks(updatedTasks);
         setLocalTasks(updatedTasks);
     }, []);
 
     const addTask = (task: string, category: 'personal' | 'work'): void => {
+        // Create and add a new task
         const newTask = { id: Date.now(), text: task, category, completed: false }
         const updatedTasks = [...tasks, newTask];
         setTasks(updatedTasks);
@@ -29,11 +33,13 @@ const TaskManager: React.FC = () => {
     };
 
     const deleteTask = (id: number): void => {
+        // Remove a task by ID
         const updateTask = tasks.filter(task => task.id !== id)
         syncTasks(updateTask)
     };
 
     const TaskCompletion = (id: number): void => {
+        // Toggle completion status of a task
         const completedTask = tasks.map((task) =>
             task.id === id ? { ...task, completed: !task.completed } : task
         )
@@ -41,6 +47,7 @@ const TaskManager: React.FC = () => {
     };
 
     const filteredTasks = tasks.filter((task) => {
+        // Filter tasks based on selected status and category
         const statusMatch =
             filter === 'all' ||
             (filter === 'active' && !task.completed) ||

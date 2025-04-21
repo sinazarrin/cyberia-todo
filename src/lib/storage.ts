@@ -1,5 +1,7 @@
 import { Task } from "../types";
 
+// This module handles all interactions with the browser's localStorage for tasks.
+
 const STORAGE_KEY = "local_students";
 
 export const getLocalTasks = (): Task[] => {

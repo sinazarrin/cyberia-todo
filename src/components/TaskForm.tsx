@@ -24,6 +24,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ addTask }) => {
   };
 
   return (
+    // Form to create a new task with category selection and validation
     <form onSubmit={handleSubmit} className="mb-4">
       <div className='flex gap-5 mb-4 justify-center'>
         {
